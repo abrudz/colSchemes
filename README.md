@@ -6,9 +6,11 @@ This tool makes it simple instead:
 
 1. Place the repository inside `%USERPROFILE%\Documents\Dyalog APL Files\StartupSession` so you get a folder called e.g. `C:\Users\JDoe\Documents\Dyalog APL Files\StartupSession\colSchemes`.
 
-2. Start Dyalog and close it again.
+2. On version 18.2 or earlier only (19.0+ does not need this), in the above folder, create a new file `polyfillRun.apln`  containing:<pre>:Namespace polyfillRun<br>    ##.Run⍬<br>:EndNamespace</pre>
 
-3. You now have a folder at `%USERPROFILE%\Documents\Dyalog APL {version} Files\colSchemes` (e.g. `C:\Users\JDoe\Documents\Dyalog APL-64 19.0 Unicode Files\colSchemes`) with Dyalog Colour Scheme files (.dcs). You can share such files with others, or drop their Dyalog Colour Scheme files into your folder.
+3. Start Dyalog and close it again.
+
+4. You now have a folder at `%USERPROFILE%\Documents\Dyalog APL {version} Files\colSchemes` (e.g. `C:\Users\JDoe\Documents\Dyalog APL-64 19.0 Unicode Files\colSchemes`) with Dyalog Colour Scheme files (.dcs). You can share such files with others, or drop their Dyalog Colour Scheme files into your folder.
 
 ### Notes
 
