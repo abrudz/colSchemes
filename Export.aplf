@@ -1,0 +1,27 @@
+ {files}←{regex}Export path;path;⎕USING;sourceKey;subKey;subKeys;⎕IO;reg;home;hex;file
+ ⍝ path can also be:
+ ⍝  0 for "colSchemes" in the current version's folder (e.g. "Dyalog APL-64 19.0 Unicode Files")
+ ⍝  1 for "colSchemes" in the user's version agnostic folder ("Dyalog APL Files")
+ ⎕IO←0
+ :If 900⌶0
+     regex←''
+ :EndIf
+ (reg home)←4070⌶0
+ reg←18↓reg,'\Colours\Schemes\'
+ path←{⍬≡0⌿⍵:'\colSchemes',⍨('Dyalog APL Files',⍨⊃⍤⎕NPARTS)⍣⍵⊢home ⋄ ⍵}path
+
+ 1 ⎕MKDIR path
+ ⎕USING←'Microsoft.Win32,Microsoft.Win32.Registry'
+ sourceKey←Registry.CurrentUser.OpenSubKey⊂reg
+ subKeys←sourceKey.GetSubKeyNames
+ sourceKey.Close
+
+ files←0⍴⊂''
+ :For subKey :In regex ⎕S'%'⍠'ML' 1⊢subKeys
+     sourceKey←Registry.CurrentUser.OpenSubKey⊂reg,subKey
+     hex←⊂,⌿(⎕D,⎕A)[16 16⊤sourceKey.GetValue⊂'Data']
+     sourceKey.Close
+     file←path,'\',subKey,'.dcs'
+     files,←⊂file
+     hex ⎕NPUT file 1
+ :EndFor

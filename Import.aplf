@@ -1,0 +1,29 @@
+ {names}←{regex}Import path;files;file;⎕IO;bytes;⎕USING;reg;home;sourceKey;name;destinationKey;obj;Cast
+ ⍝ path can also be:
+ ⍝  0 for "colSchemes" in the current version's folder (e.g. "Dyalog APL-64 19.0 Unicode Files")
+ ⍝  1 for "colSchemes" in the user's version agnostic folder ("Dyalog APL Files")
+ ⎕IO←0
+ :If 900⌶0
+     regex←''
+ :EndIf
+ (reg home)←4070⌶0
+ reg←18↓reg,'\Colours\Schemes\'
+ path←{⍬≡0⌿⍵:'\colSchemes',⍨('Dyalog APL Files',⍨⊃⍤⎕NPARTS)⍣⍵⊃⌽4070⌶0 ⋄ ⍵}path
+
+ ⎕USING←'System' 'Microsoft.Win32,Microsoft.Win32.Registry'
+
+ names←0⍴⊂''
+ →0↓⍨⎕NEXISTS path
+ files←⊃⎕NINFO⍠1⊢path,'/*.dcs'
+ :For file :In files
+     bytes←128(⊢-2×⊣×≤)16⊥⍉(⊢⍴⍨2,⍨2÷⍨≢)(1 ⎕C⊃⎕NGET file)(⊢⍳∩)⎕D,6↑⎕A
+     name←1⊃⎕NPARTS file
+     names,←⊂name
+     destinationKey←Registry.CurrentUser.CreateSubKey⊂reg,name
+
+     obj←Array.CreateInstance SByte,≢bytes
+     obj.SetValue⍠'CastToTypes'(SByte Int32)¨bytes,¨⍳≢bytes
+
+     destinationKey.SetValue'Data'obj RegistryValueKind.Binary
+     destinationKey.Close
+ :EndFor

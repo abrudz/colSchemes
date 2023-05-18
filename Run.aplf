@@ -1,0 +1,3 @@
+ Run path
+ Import 0
+ close←⎕NEW ⎕FIX':Class' '∇c' ':Implements destructor' '##. Export 0' '∇' ':EndClass'
