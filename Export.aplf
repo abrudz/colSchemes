@@ -19,7 +19,8 @@
  files←0⍴⊂''
  :For subKey :In regex ⎕S'%'⍠'ML' 1⊢subKeys
      sourceKey←Registry.CurrentUser.OpenSubKey⊂reg,subKey
-     hex←⊂,⌿(⎕D,⎕A)[16 16⊤sourceKey.GetValue⊂'Data']
+     hex←(⎕D,⎕A)[16 16⊤sourceKey.GetValue⊂'Data']
+     hex←⊂3↓¨@0↓':'@2⍤1⊢15(1↓⍤1⊢⍴⍨÷⍨∘≢,⊣),' '⍪⍉' '⍪hex
      sourceKey.Close
      file←path,'\',subKey,'.dcs'
      files,←⊂file
