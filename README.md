@@ -8,7 +8,7 @@ This tool makes it simple instead:
 
 2. Start Dyalog and close it again.
 
-3. You now have a folder at `%USERPROFILE%\Documents\Dyalog APL-64 19.0 Unicode Files\colSchemes` (e.g. `C:\Users\JDoe\Documents\Dyalog APL-64 19.0 Unicode Files\colSchemes`) with Dyalog Colour Scheme files (.dcs). You can share such files with others, or drop their Dyalog Colour Scheme files into your folder.
+3. You now have a folder at `%USERPROFILE%\Documents\Dyalog APL {version} Files\colSchemes` (e.g. `C:\Users\JDoe\Documents\Dyalog APL-64 19.0 Unicode Files\colSchemes`) with Dyalog Colour Scheme files (.dcs). You can share such files with others, or drop their Dyalog Colour Scheme files into your folder.
 
 ### Notes
 
